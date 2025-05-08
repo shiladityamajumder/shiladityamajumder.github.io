@@ -2,157 +2,246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shiladitya Majumder | Backend Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shiladitya Majumder - Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0d1117;
-      color: #c9d1d9;
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .container {
       padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
-    h1, h3, h2 {
+    h1, h2, h3 {
       text-align: center;
+      color: #00FFFF; /* Neon Cyan */
     }
-    .social-icons {
+    p, ul, li {
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+    .center-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
       margin: 1rem 0;
     }
-    .social-icons a img {
-      height: 30px;
-    }
-    .section {
-      margin: 2rem 0;
-      padding: 1rem;
-      background-color: #161b22;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    .badges img {
-      margin: 0.3rem;
-    }
-    ul {
-      list-style: disc;
-      margin-left: 2rem;
-    }
-    .grid {
+    .columns {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: stretch;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .card {
+      background-color: #111111;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
       gap: 1rem;
+      margin-top: 1rem;
+    }
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .chart-label {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    canvas {
+      width: 180px !important;
+      height: 180px !important;
     }
     @media (max-width: 768px) {
-      .grid {
+      .columns {
         grid-template-columns: 1fr;
+      }
+      .stats-row {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Hi 👋, I'm Shiladitya Majumder</h1>
-  <h3>Backend Developer | Python | Django | REST APIs | AWS</h3>
+  <div class="container">
+    <h1>Hi 👋, I'm Shiladitya Majumder</h1>
+    <h3>Backend Developer | Python | Django | REST APIs | AWS</h3>
 
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/shiladitya-majumder/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white" /></a>
-    <a href="mailto:shiladityamajumder07@gmail.com"><img src="https://img.shields.io/badge/-Email-red?style=flat-square&logo=Gmail&logoColor=white" /></a>
-    <a href="https://github.com/shiladityamajumder"><img src="https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github&logoColor=white" /></a>
-    <a href="https://medium.com/@shiladityamajumder"><img src="https://img.shields.io/badge/-Medium-black?style=flat-square&logo=medium&logoColor=white" /></a>
-  </div>
-
-  <div class="section">
-    <h2>👨‍💻 About Me</h2>
-    <ul>
-      <li>🔭 Currently working as a <strong>Backend Developer</strong> at Centrelocus</li>
-      <li>🌱 Passionate about solving real-world problems with elegant backend architecture</li>
-      <li>🤝 Open to collaborating on <strong>AI/ML & Backend Projects</strong></li>
-      <li>📫 Reach me at <strong>shiladityamajumder07@gmail.com</strong></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>🛠️ Tech Stack</h2>
-    <h4>Languages & Frameworks</h4>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-      <img src="https://img.shields.io/badge/-Django-092E20?style=flat-square&logo=django&logoColor=white" />
-      <img src="https://img.shields.io/badge/-DRF-ff1709?style=flat-square&logo=django&logoColor=white" />
-      <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
+    <div class="center-links">
+      <a href="https://www.linkedin.com/in/shiladitya-majumder/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white" /></a>
+      <a href="mailto:shiladityamajumder07@gmail.com"><img src="https://img.shields.io/badge/-Email-red?style=flat-square&logo=Gmail&logoColor=white" /></a>
+      <a href="https://github.com/shiladityamajumder"><img src="https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github&logoColor=white" /></a>
+      <a href="https://medium.com/@shiladityamajumder"><img src="https://img.shields.io/badge/-Medium-black?style=flat-square&logo=medium&logoColor=white" /></a>
     </div>
-    <h4>Databases & Tools</h4>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
-      <img src="https://img.shields.io/badge/-SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white" />
-      <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
-      <img src="https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
+
+    <div class="columns">
+      <!-- Left Column -->
+      <div class="column">
+        <div class="card">
+          <h2>👨‍💻 About Me</h2>
+          <ul>
+            <li>🔭 Currently working as a <strong>Backend Developer</strong> at Centrelocus</li>
+            <li>🌱 Passionate about solving real-world problems with elegant backend architecture</li>
+            <li>🤝 Open to collaborating on <strong>AI/ML & Backend Projects</strong></li>
+            <li>📫 Reach me at <strong>shiladityamajumder07@gmail.com</strong></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>💼 Work Experience</h2>
+          <p><strong>Centrelocus</strong>, — Backend Developer<br />
+          <em>2021 – Present</em></p>
+          <ul>
+            <li>Developed REST APIs for agri-tech and health-tech platforms</li>
+            <li>Integrated geo-tracking, bidding, chat, and authentication systems</li>
+            <li>Collaborated with mobile and frontend teams for seamless integration</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📜 Certifications</h2>
+          <ul>
+            <li>🧠 Applied AI & Machine Learning – Applied AI Course</li>
+            <li>🛰️ Multi-Agent Systems – DeepLearning.AI</li>
+            <li>☁️ AWS Machine Learning – Coursera (2024)</li>
+            <li>🧬 Neural Networks & Deep Learning – Coursera (2024)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>✍️ Content & Open Source</h2>
+          <ul>
+            <li>📝 <strong>Blog:</strong> <a href="https://medium.com/@shiladityamajumder/understanding-django-serializers-the-bridge-between-data-and-apis-f22d603e6acf" target="_blank" style="color:#64ffda; text-decoration: none;">Understanding Django Serializers</a></li>
+            <li>💻 <strong>GitHub Project:</strong> <a href="https://github.com/shiladityamajumder/django-rest-api-auth-crud" target="_blank" style="color:#64ffda; text-decoration: none;">Django REST API Auth & CRUD</a></li>
+          </ul>
+        </div>      
+      </div>
+
+      <!-- Right Column -->
+      <div class="column">
+        <div class="card">
+          <h2>🛠️ Tech Stack</h2>
+          <h4>Languages & Frameworks</h4>
+          <p>
+            <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+            <img src="https://img.shields.io/badge/-Django-092E20?style=flat-square&logo=django&logoColor=white" />
+            <img src="https://img.shields.io/badge/-DRF-ff1709?style=flat-square&logo=django&logoColor=white" />
+            <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
+          </p>
+          <h4>Databases & Tools</h4>
+          <p>
+            <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
+            <img src="https://img.shields.io/badge/-SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white" />
+            <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+            <img src="https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
+          </p>
+          <h4>Cloud & DevOps</h4>
+          <p>
+            <img src="https://img.shields.io/badge/-AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+            <img src="https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
+            <img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=nginx&logoColor=white" />
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>📊 Stats Overview</h2>
+          <div class="stats-row">
+            <div class="chart-container">
+              <canvas id="expChart"></canvas>
+              <div class="chart-label">Experience</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="certChart"></canvas>
+              <div class="chart-label">Certifications</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="projChart"></canvas>
+              <div class="chart-label">Projects</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🚀 Projects</h2>
+          <ul>
+            <li><strong>FreshScan</strong>: Backend for crop supply chain management, GPS mapping, marketplace</li>
+            <li><strong>LungX</strong>: Audio-based lung diagnostics with Pydub analysis</li>
+            <li><strong>MotoSpar</strong>: Multi-vendor vehicle part inventory system</li>
+            <li><strong>Paper Trading Platform</strong>: Simulated stock trading with real-time data</li>
+            <li><strong>Radiology Exam Portal</strong>: NLP scoring, DICOM upload, secure analytics</li>
+            <li><strong>Govt Chatbot</strong>: Built with Botpress to answer public queries from CSVs</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <h4>Cloud & DevOps</h4>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/-AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
-      <img src="https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
-      <img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=nginx&logoColor=white" />
-    </div>
   </div>
 
-  <div class="section">
-    <h2>🏆 Key Achievements</h2>
-    <ul>
-      <li>⚡ Improved API performance by <strong>45%</strong> via optimized serializers and DB queries</li>
-      <li>🚀 Built scalable APIs for <strong>FreshScan</strong>, serving 5K+ agri-users</li>
-      <li>🔐 Developed secure DICOM & NLP systems for a <strong>radiology platform</strong></li>
-    </ul>
-  </div>
+  <script>
+    Chart.register({
+      id: 'centerText',
+      beforeDraw(chart) {
+        const { width, height } = chart;
+        const ctx = chart.ctx;
+        const text = chart.config.options.plugins.centerText.text;
+        ctx.restore();
+        const fontSize = (height / 150).toFixed(2);
+        ctx.font = `${fontSize}em Inter`;
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#ffffff';
+        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+        const textY = height / 2;
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+      }
+    });
 
-  <div class="section">
-    <h2>💼 Work Experience</h2>
-    <ul>
-      <li><strong>Centrelocus</strong>, Dehradun — Backend Developer (2021 – Present)
-        <ul>
-          <li>Developed REST APIs for agri-tech and health-tech platforms</li>
-          <li>Integrated geo-tracking, bidding, chat, and authentication systems</li>
-          <li>Collaborated with mobile and frontend teams for seamless integration</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+    const createDoughnutChart = (id, label, value, max, displayText, color) => {
+      new Chart(document.getElementById(id), {
+        type: 'doughnut',
+        data: {
+          labels: [label],
+          datasets: [{
+            data: [value, max - value],
+            backgroundColor: [color, '#222222'],
+            borderColor: [color, '#222222'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          cutout: '70%',
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+            centerText: { text: displayText }
+          }
+        }
+      });
+    };
 
-  <div class="section">
-    <h2>🚀 Projects</h2>
-    <ul>
-      <li><strong>FreshScan</strong>: Backend for crop supply chain management, GPS mapping, marketplace</li>
-      <li><strong>LungX</strong>: Audio-based lung diagnostics with Pydub analysis</li>
-      <li><strong>MotoSpar</strong>: Multi-vendor vehicle part inventory management system</li>
-      <li><strong>Paper Trading Platform</strong>: Simulated stock trading with real-time data</li>
-      <li><strong>Radiology Exam Portal</strong>: NLP scoring, DICOM upload, secure analytics</li>
-      <li><strong>Govt Chatbot</strong>: Built with Botpress to answer public queries from CSVs</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>📜 Certifications</h2>
-    <ul>
-      <li>🧠 Applied AI & Machine Learning – Applied AI Course</li>
-      <li>🛰️ Multi-Agent Systems – DeepLearning.AI</li>
-      <li>☁️ AWS Machine Learning – Coursera (2024)</li>
-      <li>🧬 Neural Networks & Deep Learning – Coursera (2024)</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>📚 Education</h2>
-    <ul>
-      <li><strong>B.Sc.</strong> – University of Calcutta (2013–2016)</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>✍️ Content & Open Source</h2>
-    <ul>
-      <li>📝 Blog: <a href="https://medium.com/@shiladityamajumder/understanding-django-serializers-the-bridge-between-data-and-apis-f22d603e6acf" target="_blank">Understanding Django Serializers</a></li>
-      <li>💻 GitHub Project: <a href="https://github.com/shiladityamajumder/django-rest-api-auth-crud" target="_blank">Django REST API Auth & CRUD</a></li>
-    </ul>
-  </div>
+    createDoughnutChart('expChart', 'Experience', 4, 10, '4+', '#7CFC00'); // Lawn Green
+    createDoughnutChart('certChart', 'Certifications', 6, 10, '6+', '#00FFFF'); // Aqua Blue
+    createDoughnutChart('projChart', 'Projects', 10, 15, '10+', '#FFA500'); // Vibrant Orange
+  </script>
 </body>
 </html>
