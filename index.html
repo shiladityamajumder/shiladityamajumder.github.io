@@ -1,151 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiladitya Majumder - Portfolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #000;
-            color: #39ff14;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-        header h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-        header p {
-            margin: 10px 0;
-            font-size: 1.2em;
-        }
-        .container {
-            width: 90%;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #39ff14;
-            border-radius: 10px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .section h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #39ff14;
-            padding-bottom: 5px;
-        }
-        .skills, .experience, .education, .projects {
-            list-style: none;
-            padding: 0;
-        }
-        .skills li, .experience li, .projects li {
-            margin-bottom: 10px;
-        }
-        .logo {
-            max-width: 150px;
-            margin: 0 auto 20px;
-            display: block;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            border-top: 1px solid #39ff14;
-            margin-top: 20px;
-        }
-        a {
-            color: #39ff14;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .project {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #39ff14;
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiladitya Majumder | Backend Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      padding: 2rem;
+    }
+    h1, h3, h2 {
+      text-align: center;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .social-icons a img {
+      height: 30px;
+    }
+    .section {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: #161b22;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .badges img {
+      margin: 0.3rem;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Shiladitya Majumder Logo" class="logo">
-        <h1>Shiladitya Majumder</h1>
-        <p>Python Developer at Esrotlabs</p>
-        <p>Email: <a href="mailto:shiladityamajumder07@gmail.com">shiladityamajumder07@gmail.com</a> | Contact: +91-9038446667</p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/shiladityamajumder" target="_blank">/shiladityamajumder</a> | GitHub: <a href="https://github.com/shiladityamajumder" target="_blank">/shiladityamajumder</a></p>
-    </header>
+  <h1>Hi 👋, I'm Shiladitya Majumder</h1>
+  <h3>Backend Developer | Python | Django | REST APIs | AWS</h3>
 
-    <div class="container">
-        <section class="section">
-            <h2>Professional Objective</h2>
-            <p>Passionate Software Developer with a strong track record of delivering innovative solutions that exceed client expectations. I’m committed to driving impactful projects by leveraging my expertise in software development, while continuously evolving my skills to stay ahead in the industry.</p>
-        </section>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/shiladitya-majumder/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white" /></a>
+    <a href="mailto:shiladityamajumder07@gmail.com"><img src="https://img.shields.io/badge/-Email-red?style=flat-square&logo=Gmail&logoColor=white" /></a>
+    <a href="https://github.com/shiladityamajumder"><img src="https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github&logoColor=white" /></a>
+    <a href="https://medium.com/@shiladityamajumder"><img src="https://img.shields.io/badge/-Medium-black?style=flat-square&logo=medium&logoColor=white" /></a>
+  </div>
 
-        <section class="section">
-            <h2>Skills</h2>
-            <ul class="skills">
-                <li><strong>Programming Languages:</strong> Python, SQL</li>
-                <li><strong>Frameworks:</strong> Django</li>
-                <li><strong>Machine Learning:</strong> Classification & Regression Models</li>
-                <li><strong>Cloud:</strong> AWS (EC2, Route53)</li>
-                <li><strong>Libraries:</strong> sci-kit-learn, NumPy, Pandas, Matplotlib, Seaborn</li>
-                <li><strong>Tools:</strong> Git, Postman, Slack, REST API</li>
-                <li><strong>Databases:</strong> MySQL, PostgreSQL, SQLite3</li>
-                <li><strong>Web Servers:</strong> Nginx</li>
-            </ul>
-        </section>
+  <div class="section">
+    <h2>👨‍💻 About Me</h2>
+    <ul>
+      <li>🔭 Currently working as a <strong>Backend Developer</strong> at Centrelocus</li>
+      <li>🌱 Passionate about solving real-world problems with elegant backend architecture</li>
+      <li>🤝 Open to collaborating on <strong>AI/ML & Backend Projects</strong></li>
+      <li>📫 Reach me at <strong>shiladityamajumder07@gmail.com</strong></li>
+    </ul>
+  </div>
 
-        <section class="section">
-            <h2>Work Experience</h2>
-            <ul class="experience">
-                <li><strong>Python Developer, EsrotLabs (August 2021 - Present):</strong></li>
-                <p>Developed and maintained multiple web applications using Django, REST API, PostgreSQL, and related technologies.</p>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Projects</h2>
-            <div class="projects">
-                <div class="project">
-                    <h3>Risk Management System</h3>
-                    <p><strong>Scope:</strong> Tools and processes for identifying, assessing, and prioritizing risks.</p>
-                    <p><strong>Tech Stack:</strong> Python, Django, PostgreSQL</p>
-                    <p><strong>Role:</strong> Developed views and models to manage risk causes and controls.</p>
-                </div>
-                <div class="project">
-                    <h3>Lung Audio Analysis</h3>
-                    <p><strong>Scope:</strong> Django REST API for recording and analyzing lung audio captured via digital stethoscopes.</p>
-                    <p><strong>Tech Stack:</strong> Python, Django, Django REST Framework, PostgreSQL</p>
-                    <p><strong>Role:</strong> Led API development, integrated audio processing algorithms.</p>
-                </div>
-                <!-- Add more projects similarly -->
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Education</h2>
-            <p><strong>Bachelor of Science in Bio-Chemistry:</strong> Gurudas College, University of Calcutta, June 2016.</p>
-        </section>
-
-        <section class="section">
-            <h2>Certifications</h2>
-            <ul>
-                <li>Applied AI & Machine Learning by Applied AI Course</li>
-                <li>Neural Network & Deep Learning by Andrew Ng (Coursera)</li>
-                <li>Getting Started with AWS Machine Learning</li>
-                <li>Practical Data Science on the AWS Cloud</li>
-            </ul>
-        </section>
+  <div class="section">
+    <h2>🛠️ Tech Stack</h2>
+    <h4>Languages & Frameworks</h4>
+    <div class="badges">
+      <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+      <img src="https://img.shields.io/badge/-Django-092E20?style=flat-square&logo=django&logoColor=white" />
+      <img src="https://img.shields.io/badge/-DRF-ff1709?style=flat-square&logo=django&logoColor=white" />
+      <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
     </div>
+    <h4>Databases & Tools</h4>
+    <div class="badges">
+      <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
+      <img src="https://img.shields.io/badge/-SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white" />
+      <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+      <img src="https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
+    </div>
+    <h4>Cloud & DevOps</h4>
+    <div class="badges">
+      <img src="https://img.shields.io/badge/-AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+      <img src="https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
+      <img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=nginx&logoColor=white" />
+    </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2024 Shiladitya Majumder | All Rights Reserved</p>
-    </footer>
+  <div class="section">
+    <h2>🏆 Key Achievements</h2>
+    <ul>
+      <li>⚡ Improved API performance by <strong>45%</strong> via optimized serializers and DB queries</li>
+      <li>🚀 Built scalable APIs for <strong>FreshScan</strong>, serving 5K+ agri-users</li>
+      <li>🔐 Developed secure DICOM & NLP systems for a <strong>radiology platform</strong></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>💼 Work Experience</h2>
+    <ul>
+      <li><strong>Centrelocus</strong>, Dehradun — Backend Developer (2021 – Present)
+        <ul>
+          <li>Developed REST APIs for agri-tech and health-tech platforms</li>
+          <li>Integrated geo-tracking, bidding, chat, and authentication systems</li>
+          <li>Collaborated with mobile and frontend teams for seamless integration</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🚀 Projects</h2>
+    <ul>
+      <li><strong>FreshScan</strong>: Backend for crop supply chain management, GPS mapping, marketplace</li>
+      <li><strong>LungX</strong>: Audio-based lung diagnostics with Pydub analysis</li>
+      <li><strong>MotoSpar</strong>: Multi-vendor vehicle part inventory management system</li>
+      <li><strong>Paper Trading Platform</strong>: Simulated stock trading with real-time data</li>
+      <li><strong>Radiology Exam Portal</strong>: NLP scoring, DICOM upload, secure analytics</li>
+      <li><strong>Govt Chatbot</strong>: Built with Botpress to answer public queries from CSVs</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📜 Certifications</h2>
+    <ul>
+      <li>🧠 Applied AI & Machine Learning – Applied AI Course</li>
+      <li>🛰️ Multi-Agent Systems – DeepLearning.AI</li>
+      <li>☁️ AWS Machine Learning – Coursera (2024)</li>
+      <li>🧬 Neural Networks & Deep Learning – Coursera (2024)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📚 Education</h2>
+    <ul>
+      <li><strong>B.Sc.</strong> – University of Calcutta (2013–2016)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>✍️ Content & Open Source</h2>
+    <ul>
+      <li>📝 Blog: <a href="https://medium.com/@shiladityamajumder/understanding-django-serializers-the-bridge-between-data-and-apis-f22d603e6acf" target="_blank">Understanding Django Serializers</a></li>
+      <li>💻 GitHub Project: <a href="https://github.com/shiladityamajumder/django-rest-api-auth-crud" target="_blank">Django REST API Auth & CRUD</a></li>
+    </ul>
+  </div>
 </body>
 </html>
