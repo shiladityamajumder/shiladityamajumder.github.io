@@ -1,247 +1,401 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shiladitya Majumder - Portfolio</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #000000;
-      color: #ffffff;
-    }
-    .container {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    h1, h2, h3 {
-      text-align: center;
-      color: #00FFFF; /* Neon Cyan */
-    }
-    p, ul, li {
-      color: #ffffff;
-      font-size: 0.95rem;
-    }
-    .center-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-      align-items: stretch;
-    }
-    .column {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-    .card {
-      background-color: #111111;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-    }
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .chart-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .chart-label {
-      margin-top: 0.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    canvas {
-      width: 180px !important;
-      height: 180px !important;
-    }
-    @media (max-width: 768px) {
-      .columns {
-        grid-template-columns: 1fr;
-      }
-      .stats-row {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f4f1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Portfolio of Shiladitya Majumder, a backend engineer building scalable Python services, distributed systems, and production-grade APIs.">
+  <meta name="author" content="Shiladitya Majumder">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shiladitya Majumder — Backend Engineer">
+  <meta property="og:description" content="Backend engineer specializing in Python, FastAPI, Django, PostgreSQL, Redis, AWS, microservices, and event-driven systems.">
+  <meta property="og:url" content="https://shiladityamajumder.github.io/">
+  <meta property="og:image" content="https://shiladityamajumder.github.io/assets/images/social-preview.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shiladitya Majumder — Backend Engineer">
+  <meta name="twitter:description" content="Scalable services, distributed systems, and production-grade APIs.">
+  <meta name="twitter:image" content="https://shiladityamajumder.github.io/assets/images/social-preview.png">
+
+  <link rel="canonical" href="https://shiladityamajumder.github.io/">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/main.js"></script>
+
+  <title>Shiladitya Majumder — Backend Engineer</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shiladitya Majumder",
+    "jobTitle": "Backend Engineer",
+    "url": "https://shiladityamajumder.github.io/",
+    "email": "mailto:shiladityamajumder07@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kolkata",
+      "addressRegion": "West Bengal",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/shiladitya-majumder",
+      "https://github.com/shiladityamajumder",
+      "https://medium.com/@shiladityamajumder"
+    ],
+    "knowsAbout": [
+      "Python",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "RabbitMQ",
+      "AWS",
+      "Docker",
+      "Microservices",
+      "Event-driven architecture"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Hi 👋, I'm Shiladitya Majumder</h1>
-    <h3>Backend Developer | Python | Django | REST APIs | AWS</h3>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="center-links">
-      <a href="https://www.linkedin.com/in/shiladitya-majumder/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white" /></a>
-      <a href="mailto:shiladityamajumder07@gmail.com"><img src="https://img.shields.io/badge/-Email-red?style=flat-square&logo=Gmail&logoColor=white" /></a>
-      <a href="https://github.com/shiladityamajumder"><img src="https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github&logoColor=white" /></a>
-      <a href="https://medium.com/@shiladityamajumder"><img src="https://img.shields.io/badge/-Medium-black?style=flat-square&logo=medium&logoColor=white" /></a>
+  <header class="site-header" data-header>
+    <div class="shell nav-shell">
+      <a class="brand" href="#top" aria-label="Shiladitya Majumder, home">
+        <span class="brand-mark" aria-hidden="true">SM</span>
+        <span class="brand-text">Shiladitya Majumder</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Toggle theme">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 15.3A9 9 0 0 1 8.7 3a7.1 7.1 0 1 0 12.3 12.3Z"></path>
+          </svg>
+        </button>
+        <button class="menu-button" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false">
+          <span></span><span></span>
+          <span class="sr-only">Open menu</span>
+        </button>
+      </div>
     </div>
 
-    <div class="columns">
-      <!-- Left Column -->
-      <div class="column">
-        <div class="card">
-          <h2>👨‍💻 About Me</h2>
-          <ul>
-            <li>🔭 Currently working as a <strong>Backend Developer</strong> at Centrelocus</li>
-            <li>🌱 Passionate about solving real-world problems with elegant backend architecture</li>
-            <li>🤝 Open to collaborating on <strong>AI/ML & Backend Projects</strong></li>
-            <li>📫 Reach me at <strong>shiladityamajumder07@gmail.com</strong></li>
-          </ul>
-        </div>
+    <nav class="mobile-menu" id="mobile-menu" data-mobile-menu aria-label="Mobile navigation" hidden>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/files/Shiladitya_Majumder_Resume.pdf" download>Download résumé</a>
+    </nav>
+  </header>
 
-        <div class="card">
-          <h2>💼 Work Experience</h2>
-          <p><strong>Centrelocus</strong>, — Backend Developer<br />
-          <em>2021 – Present</em></p>
-          <ul>
-            <li>Developed REST APIs for agri-tech and health-tech platforms</li>
-            <li>Integrated geo-tracking, bidding, chat, and authentication systems</li>
-            <li>Collaborated with mobile and frontend teams for seamless integration</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2>📜 Certifications</h2>
-          <ul>
-            <li>🧠 Applied AI & Machine Learning – Applied AI Course</li>
-            <li>🛰️ Multi-Agent Systems – DeepLearning.AI</li>
-            <li>☁️ AWS Machine Learning – Coursera (2024)</li>
-            <li>🧬 Neural Networks & Deep Learning – Coursera (2024)</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2>✍️ Content & Open Source</h2>
-          <ul>
-            <li>📝 <strong>Blog:</strong> <a href="https://medium.com/@shiladityamajumder/understanding-django-serializers-the-bridge-between-data-and-apis-f22d603e6acf" target="_blank" style="color:#64ffda; text-decoration: none;">Understanding Django Serializers</a></li>
-            <li>💻 <strong>GitHub Project:</strong> <a href="https://github.com/shiladityamajumder/django-rest-api-auth-crud" target="_blank" style="color:#64ffda; text-decoration: none;">Django REST API Auth & CRUD</a></li>
-          </ul>
-        </div>      
-      </div>
-
-      <!-- Right Column -->
-      <div class="column">
-        <div class="card">
-          <h2>🛠️ Tech Stack</h2>
-          <h4>Languages & Frameworks</h4>
-          <p>
-            <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-            <img src="https://img.shields.io/badge/-Django-092E20?style=flat-square&logo=django&logoColor=white" />
-            <img src="https://img.shields.io/badge/-DRF-ff1709?style=flat-square&logo=django&logoColor=white" />
-            <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Backend Engineer · Kolkata, India</p>
+          <h1 id="hero-title">I build reliable systems behind demanding products.</h1>
+          <p class="hero-intro">
+            Backend engineer with 5+ years of experience designing scalable Python services,
+            production-grade APIs, event-driven workflows, and cloud infrastructure.
           </p>
-          <h4>Databases & Tools</h4>
-          <p>
-            <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
-            <img src="https://img.shields.io/badge/-SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white" />
-            <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
-            <img src="https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
-          </p>
-          <h4>Cloud & DevOps</h4>
-          <p>
-            <img src="https://img.shields.io/badge/-AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
-            <img src="https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
-            <img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=nginx&logoColor=white" />
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>📊 Stats Overview</h2>
-          <div class="stats-row">
-            <div class="chart-container">
-              <canvas id="expChart"></canvas>
-              <div class="chart-label">Experience</div>
-            </div>
-            <div class="chart-container">
-              <canvas id="certChart"></canvas>
-              <div class="chart-label">Certifications</div>
-            </div>
-            <div class="chart-container">
-              <canvas id="projChart"></canvas>
-              <div class="chart-label">Projects</div>
-            </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore my work</a>
+            <a class="button button-secondary" href="assets/files/Shiladitya_Majumder_Resume.pdf" download>
+              Download résumé
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></svg>
+            </a>
           </div>
         </div>
 
-        <div class="card">
-          <h2>🚀 Projects</h2>
-          <ul>
-            <li><strong>FreshScan</strong>: Backend for crop supply chain management, GPS mapping, marketplace</li>
-            <li><strong>LungX</strong>: Audio-based lung diagnostics with Pydub analysis</li>
-            <li><strong>MotoSpar</strong>: Multi-vendor vehicle part inventory system</li>
-            <li><strong>Paper Trading Platform</strong>: Simulated stock trading with real-time data</li>
-            <li><strong>Radiology Exam Portal</strong>: NLP scoring, DICOM upload, secure analytics</li>
-            <li><strong>Govt Chatbot</strong>: Built with Botpress to answer public queries from CSVs</li>
-          </ul>
+        <aside class="hero-panel" aria-label="Professional overview" data-reveal>
+          <div class="hero-monogram" aria-hidden="true">SM</div>
+          <div class="hero-panel-copy">
+            <p class="label">Current focus</p>
+            <p>Distributed services, healthcare commerce, API architecture, and asynchronous processing.</p>
+          </div>
+          <div class="availability">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Open to meaningful engineering conversations</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="shell metrics" aria-label="Career highlights" data-reveal>
+        <article>
+          <strong>5+</strong>
+          <span>Years building backend systems</span>
+        </article>
+        <article>
+          <strong>15k–25k</strong>
+          <span>Daily API requests supported</span>
+        </article>
+        <article>
+          <strong>30%</strong>
+          <span>Approximate API response-time reduction</span>
+        </article>
+        <article>
+          <strong>4</strong>
+          <span>Core domains: commerce, healthcare, agriculture, crypto</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="shell section-grid">
+        <div class="section-heading" data-reveal>
+          <p class="section-index">01 / About</p>
+          <h2 id="about-title">Engineering for clarity, scale, and operational confidence.</h2>
+        </div>
+        <div class="section-content prose" data-reveal>
+          <p class="lead">
+            I specialize in backend architecture where maintainability matters as much as raw performance.
+            My work spans FastAPI and Django services, PostgreSQL optimization, Redis-backed background
+            processing, RabbitMQ messaging, and AWS deployments.
+          </p>
+          <p>
+            I have helped move legacy MVC services toward layered architecture, modernized gateway
+            infrastructure from Express to Fastify, and built message-driven pipelines that keep critical
+            workflows responsive and resilient.
+          </p>
+          <p>
+            I work closely with frontend, mobile, infrastructure, and product teams to turn business
+            requirements into clear contracts, dependable services, and production-ready delivery.
+          </p>
+          <div class="inline-links" aria-label="Professional links">
+            <a href="https://github.com/shiladityamajumder" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/shiladitya-majumder" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://medium.com/@shiladityamajumder" target="_blank" rel="noreferrer">Medium <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="section section-contrast" id="experience" aria-labelledby="experience-title">
+      <div class="shell">
+        <div class="section-heading section-heading-wide" data-reveal>
+          <p class="section-index">02 / Experience</p>
+          <h2 id="experience-title">Production work across APIs, platforms, and distributed services.</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta">
+              <p>Oct 2025 — Present</p>
+              <span>Kolkata / India</span>
+            </div>
+            <div class="timeline-main">
+              <p class="company">Sastasundar Healthbuddy Limited</p>
+              <h3>Software Engineer</h3>
+              <p class="timeline-summary">
+                Building and maintaining FastAPI microservices for core healthcare e-commerce workflows.
+              </p>
+              <ul class="impact-list">
+                <li>Support services handling approximately 15k–25k API requests each day.</li>
+                <li>Refactored Flask and FastAPI MVC services into layered architecture using models, repositories, schemas, services, routes, and dependencies.</li>
+                <li>Implemented RabbitMQ-based event-driven notifications and Celery/Redis background processing.</li>
+                <li>Migrated gateway services from Node.js Express to Fastify to improve performance and throughput.</li>
+                <li>Optimized PostgreSQL queries and indexes, reducing average API response time by approximately 30%.</li>
+                <li>Contribute to AWS deployment, production monitoring, incident resolution, and cross-team delivery.</li>
+              </ul>
+              <div class="tech-row" aria-label="Technologies used">
+                <span>FastAPI</span><span>PostgreSQL</span><span>RabbitMQ</span><span>Celery</span><span>Redis</span><span>Fastify</span><span>AWS</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-meta">
+              <p>Aug 2021 — Oct 2025</p>
+              <span>India</span>
+            </div>
+            <div class="timeline-main">
+              <p class="company">Centrelocus (Esrot Consulting Labs)</p>
+              <h3>Python Developer</h3>
+              <p class="timeline-summary">
+                Delivered backend systems across e-commerce, healthcare, agriculture, logistics, and crypto products.
+              </p>
+              <ul class="impact-list">
+                <li>Built RESTful APIs with Django, Django REST Framework, and FastAPI across multiple domains.</li>
+                <li>Developed AI-powered résumé parsing using OpenAI APIs, OCR, semantic search, and structured extraction.</li>
+                <li>Designed asynchronous and event-driven services for scalable request handling.</li>
+                <li>Implemented geolocation and real-time tracking for logistics and live mapping applications.</li>
+                <li>Deployed Dockerized backend services on AWS EC2, S3, and RDS.</li>
+                <li>Defined API contracts with cross-functional teams and improved reliability across client projects.</li>
+              </ul>
+              <div class="tech-row" aria-label="Technologies used">
+                <span>Python</span><span>Django</span><span>DRF</span><span>FastAPI</span><span>OpenAI</span><span>Docker</span><span>AWS</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="shell">
+        <div class="section-heading section-heading-wide" data-reveal>
+          <p class="section-index">03 / Selected projects</p>
+          <h2 id="projects-title">Reusable engineering foundations and applied AI workflows.</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-reveal>
+            <div class="project-topline">
+              <span class="project-number">01</span>
+              <span class="project-type">AI · Backend</span>
+            </div>
+            <h3>VisScan</h3>
+            <p>
+              A FastAPI résumé parser that combines OpenAI, OCR, NLP, and semantic matching to convert
+              unstructured résumés into structured candidate data and calculate candidate–job relevance.
+            </p>
+            <div class="project-stack">
+              <span>FastAPI</span><span>OpenAI</span><span>OCR</span><span>NLP</span><span>Semantic Search</span>
+            </div>
+            <a class="text-link" href="https://github.com/shiladityamajumder?tab=repositories" target="_blank" rel="noreferrer">
+              Browse repositories <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-topline">
+              <span class="project-number">02</span>
+              <span class="project-type">Architecture · Open source</span>
+            </div>
+            <h3>FastAPI Boilerplate</h3>
+            <p>
+              A production-oriented FastAPI foundation with modular monolith architecture, unified API
+              responses, rate limiting, structured logging, and multi-database support for faster delivery.
+            </p>
+            <div class="project-stack">
+              <span>FastAPI</span><span>Modular Monolith</span><span>Rate Limiting</span><span>Logging</span><span>Multi-DB</span>
+            </div>
+            <a class="text-link" href="https://github.com/shiladityamajumder?tab=repositories" target="_blank" rel="noreferrer">
+              Browse repositories <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+        </div>
+
+        <div class="project-note" data-reveal>
+          <p>More engineering notes and implementation write-ups are available on Medium.</p>
+          <a href="https://medium.com/@shiladityamajumder" target="_blank" rel="noreferrer">Read technical articles <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-contrast" id="skills" aria-labelledby="skills-title">
+      <div class="shell section-grid">
+        <div class="section-heading" data-reveal>
+          <p class="section-index">04 / Capabilities</p>
+          <h2 id="skills-title">A backend toolkit centered on dependable delivery.</h2>
+        </div>
+        <div class="skill-groups" data-reveal>
+          <article>
+            <h3>Languages & frameworks</h3>
+            <div class="skill-list">
+              <span>Python</span><span>FastAPI</span><span>Django</span><span>Django REST Framework</span><span>JavaScript</span><span>Node.js</span><span>Fastify</span>
+            </div>
+          </article>
+          <article>
+            <h3>Architecture & APIs</h3>
+            <div class="skill-list">
+              <span>RESTful APIs</span><span>Microservices</span><span>Layered Architecture</span><span>Event-Driven Systems</span><span>Asynchronous Processing</span><span>Background Tasks</span>
+            </div>
+          </article>
+          <article>
+            <h3>Data & messaging</h3>
+            <div class="skill-list">
+              <span>PostgreSQL</span><span>Redis</span><span>Celery</span><span>RabbitMQ</span><span>Query Optimization</span><span>Indexing Strategy</span>
+            </div>
+          </article>
+          <article>
+            <h3>Cloud & delivery</h3>
+            <div class="skill-list">
+              <span>AWS EC2</span><span>AWS S3</span><span>AWS RDS</span><span>Route 53</span><span>Docker</span><span>Production Monitoring</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="shell section-grid">
+        <div class="section-heading" data-reveal>
+          <p class="section-index">05 / Education</p>
+          <h2 id="education-title">Formal study supporting practical systems work.</h2>
+        </div>
+        <div class="education-list" data-reveal>
+          <article>
+            <div>
+              <p class="education-school">Integral University, Lucknow</p>
+              <h3>Master of Computer Applications</h3>
+            </div>
+            <p>Expected 2027</p>
+          </article>
+          <article>
+            <div>
+              <p class="education-school">University of Calcutta</p>
+              <h3>Bachelor of Science</h3>
+            </div>
+            <p>2016</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-grid">
+        <div data-reveal>
+          <p class="section-index">06 / Contact</p>
+          <h2 id="contact-title">Let’s discuss the system behind your next product.</h2>
+        </div>
+        <div class="contact-actions" data-reveal>
+          <p>
+            For backend engineering, API architecture, distributed systems, or technical collaboration,
+            reach me directly by email.
+          </p>
+          <a class="contact-email" href="mailto:shiladityamajumder07@gmail.com">shiladityamajumder07@gmail.com</a>
+          <div class="contact-links">
+            <a href="tel:+919038446667">+91 90384 46667</a>
+            <a href="https://www.linkedin.com/in/shiladitya-majumder" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/shiladityamajumder" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://medium.com/@shiladityamajumder" target="_blank" rel="noreferrer">Medium</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>© <span data-year></span> Shiladitya Majumder</p>
+      <p>Designed and built as a lightweight static portfolio.</p>
+      <a href="#top">Back to top ↑</a>
     </div>
-  </div>
+  </footer>
 
-  <script>
-    Chart.register({
-      id: 'centerText',
-      beforeDraw(chart) {
-        const { width, height } = chart;
-        const ctx = chart.ctx;
-        const text = chart.config.options.plugins.centerText.text;
-        ctx.restore();
-        const fontSize = (height / 150).toFixed(2);
-        ctx.font = `${fontSize}em Inter`;
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#ffffff';
-        const textX = Math.round((width - ctx.measureText(text).width) / 2);
-        const textY = height / 2;
-        ctx.fillText(text, textX, textY);
-        ctx.save();
-      }
-    });
-
-    const createDoughnutChart = (id, label, value, max, displayText, color) => {
-      new Chart(document.getElementById(id), {
-        type: 'doughnut',
-        data: {
-          labels: [label],
-          datasets: [{
-            data: [value, max - value],
-            backgroundColor: [color, '#222222'],
-            borderColor: [color, '#222222'],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          cutout: '70%',
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false },
-            centerText: { text: displayText }
-          }
-        }
-      });
-    };
-
-    createDoughnutChart('expChart', 'Experience', 4, 10, '4+', '#7CFC00'); // Lawn Green
-    createDoughnutChart('certChart', 'Certifications', 6, 10, '6+', '#00FFFF'); // Aqua Blue
-    createDoughnutChart('projChart', 'Projects', 10, 15, '10+', '#FFA500'); // Vibrant Orange
-  </script>
+  <noscript>
+    <div class="noscript-message">This portfolio works without JavaScript; interactive navigation and animations are disabled.</div>
+  </noscript>
 </body>
 </html>
