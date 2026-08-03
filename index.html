@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f4f1">
+  <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="Portfolio of Shiladitya Majumder, a backend engineer building scalable Python services, distributed systems, and production-grade APIs.">
   <meta name="author" content="Shiladitya Majumder">
@@ -22,6 +22,9 @@
 
   <link rel="canonical" href="https://shiladityamajumder.github.io/">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script defer src="assets/js/main.js"></script>
 
@@ -68,7 +71,13 @@
   <header class="site-header" data-header>
     <div class="shell nav-shell">
       <a class="brand" href="#top" aria-label="Shiladitya Majumder, home">
-        <span class="brand-mark" aria-hidden="true">SM</span>
+        <span class="brand-mark" aria-hidden="true">
+          <svg class="brand-logo" viewBox="0 0 40 40" focusable="false">
+            <path d="M15 11 8.5 20 15 29"></path>
+            <path d="m25 11 6.5 9-6.5 9"></path>
+            <path d="m23 8-6 24"></path>
+          </svg>
+        </span>
         <span class="brand-text">Shiladitya Majumder</span>
       </a>
 
@@ -127,17 +136,32 @@
           </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Professional overview" data-reveal>
-          <div class="hero-monogram" aria-hidden="true">SM</div>
-          <div class="hero-panel-copy">
-            <p class="label">Current focus</p>
-            <p>Distributed services, healthcare commerce, API architecture, and asynchronous processing.</p>
+        <div class="hero-visual" aria-hidden="true" data-reveal data-orbital-visual>
+          <div class="orbital-scene" data-orbital-scene>
+            <span class="globe-aura"></span>
+
+            <svg class="globe-base" viewBox="0 0 400 400" focusable="false">
+              <circle class="globe-outline" cx="200" cy="200" r="126"></circle>
+              <ellipse class="globe-line globe-line-vertical globe-line-vertical-one" cx="200" cy="200" rx="46" ry="126"></ellipse>
+              <ellipse class="globe-line globe-line-vertical globe-line-vertical-two" cx="200" cy="200" rx="88" ry="126"></ellipse>
+              <ellipse class="globe-line globe-line-horizontal globe-line-horizontal-one" cx="200" cy="200" rx="126" ry="42"></ellipse>
+              <ellipse class="globe-line globe-line-horizontal globe-line-horizontal-two" cx="200" cy="200" rx="116" ry="82"></ellipse>
+              <path class="globe-route globe-route-one" d="M92 179c45-54 124-75 205-36"></path>
+              <path class="globe-route globe-route-two" d="M113 260c61 32 131 27 184-18"></path>
+            </svg>
+
+            <canvas class="network-globe" data-network-globe></canvas>
+
+            <span class="orbit orbit-one"><i></i></span>
+            <span class="orbit orbit-two"><i></i></span>
+            <span class="orbit orbit-three"><i></i></span>
+
+            <span class="visual-particle visual-particle-one"></span>
+            <span class="visual-particle visual-particle-two"></span>
+            <span class="visual-particle visual-particle-three"></span>
+            <span class="visual-particle visual-particle-four"></span>
           </div>
-          <div class="availability">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span>Open to meaningful engineering conversations</span>
-          </div>
-        </aside>
+        </div>
       </div>
 
       <div class="shell metrics" aria-label="Career highlights" data-reveal>

@@ -1,6 +1,6 @@
 # Shiladitya Majumder — Portfolio
 
-A responsive, monochrome personal portfolio built with semantic HTML, modern CSS, and lightweight JavaScript. It is designed for direct deployment to GitHub Pages without a build step.
+A responsive, monochrome personal portfolio built with semantic HTML, modern CSS, and lightweight JavaScript. The hero includes a custom animated network globe rendered without external libraries. It is designed for direct deployment to GitHub Pages without a build step.
 
 ## Structure
 
@@ -31,12 +31,12 @@ A responsive, monochrome personal portfolio built with semantic HTML, modern CSS
 
 - Main portfolio content: `index.html`
 - Visual design and responsiveness: `assets/css/styles.css`
-- Navigation, theme toggle, scroll effects: `assets/js/main.js`
+- Navigation, theme toggle, scroll effects, and animated network globe: `assets/js/main.js`
 - Downloadable résumé: `assets/files/Shiladitya_Majumder_Resume.pdf`
 
 ## Notes
 
-- The theme toggle preserves the selected monochrome light or dark mode in the browser.
-- The website uses no frontend framework, package manager, CDN, or external font dependency.
+- The first visit always opens in the white light theme. The theme toggle preserves a visitor’s later light or dark selection in the browser.
+- The website uses no frontend framework or package manager. Google Fonts supplies Newsreader, Manrope, and IBM Plex Mono, with robust system-font fallbacks.
 - Project cards currently link to the GitHub repositories page because exact project repository URLs were not supplied.
 - Update the canonical URL, sitemap, and Open Graph URLs if the GitHub username or domain changes.
