@@ -10,9 +10,9 @@
   --inverse: #ffffff;
   --selection: #e8e8e3;
   --shadow: 0 24px 70px rgba(17, 17, 17, 0.09);
-  --font-sans: "Manrope", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --font-sans: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: var(--font-sans);
   --radius-sm: 0.35rem;
   --radius-md: 0.75rem;
   --shell: min(1180px, calc(100vw - 2rem));
@@ -49,13 +49,19 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.65;
+  font-weight: 400;
+  line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
 }
 
 body.menu-open {
+  position: fixed;
+  width: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 ::selection {
@@ -80,6 +86,11 @@ button {
   font: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
 h1,
 h2,
 h3,
@@ -90,19 +101,25 @@ p {
 h1,
 h2,
 h3 {
+  font-family: var(--font-display);
   text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
 }
 
 h1,
 h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 0.96;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
 }
 
 h3 {
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.035em;
 }
 
 .sr-only {
@@ -142,20 +159,35 @@ h3 {
 
 .site-header {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   inset: 0 0 auto;
   height: var(--header-height);
   border-bottom: 1px solid transparent;
-  transition: background var(--transition), border-color var(--transition), backdrop-filter var(--transition);
+  transition: background-color var(--transition), border-color var(--transition), backdrop-filter var(--transition);
 }
 
 .site-header.is-scrolled {
-  background: color-mix(in srgb, var(--page) 88%, transparent);
+  background-color: color-mix(in srgb, var(--page) 94%, transparent);
   border-color: var(--line);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
 
+body.menu-open .site-header {
+  background-color: var(--page);
+  border-color: var(--line);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: none;
+}
+
+body.menu-open .nav-shell {
+  background-color: var(--page);
+}
+
 .nav-shell {
+  position: relative;
+  z-index: 2;
   height: 100%;
   display: flex;
   align-items: center;
@@ -201,8 +233,9 @@ h3 {
 }
 
 .brand-text {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
@@ -216,7 +249,7 @@ h3 {
   position: relative;
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 650;
+  font-weight: 600;
   text-decoration: none;
   transition: color var(--transition);
 }
@@ -289,45 +322,90 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .menu-button {
+  position: relative;
   display: none;
-  gap: 0.28rem;
-  align-content: center;
 }
 
 .menu-button span:not(.sr-only) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 1rem;
   height: 1px;
+  margin-top: -0.5px;
+  margin-left: -0.5rem;
   background: currentColor;
-  transition: transform var(--transition);
+  transform: translateY(-3.5px);
+  transform-origin: center;
+}
+
+.menu-button span:nth-child(2) {
+  transform: translateY(3.5px);
 }
 
 .menu-button[aria-expanded="true"] span:first-child {
-  transform: translateY(2.5px) rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .menu-button[aria-expanded="true"] span:nth-child(2) {
-  transform: translateY(-2.5px) rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .mobile-menu {
-  position: fixed;
-  inset: var(--header-height) 0 0;
-  background: var(--page);
-  padding: 1.5rem max(1rem, calc((100vw - 1180px) / 2));
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--page);
+  padding: 1.25rem max(1rem, calc((100vw - 1180px) / 2)) max(2rem, env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--ink) 10%, transparent);
+  isolation: isolate;
+  opacity: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu[hidden] {
+  display: none !important;
 }
 
 .mobile-menu a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 4.55rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--line);
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 8vw, 2.4rem);
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 5vw, 1.9rem);
+  font-weight: 500;
   letter-spacing: -0.04em;
-  line-height: 1.1;
+  line-height: 1.2;
   text-decoration: none;
+}
+
+.mobile-menu a::after {
+  content: "↗";
+  color: var(--faint);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transform: translateX(0);
+  transition: transform var(--transition), color var(--transition);
+}
+
+.mobile-menu a[href^="#"]::after {
+  content: "↓";
+}
+
+.mobile-menu a:hover::after,
+.mobile-menu a:focus-visible::after {
+  color: var(--ink);
+  transform: translateX(0.2rem);
 }
 
 .hero {
@@ -347,10 +425,10 @@ html[data-theme="dark"] .theme-icon-moon {
 .company,
 .project-type,
 .project-number {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -361,16 +439,18 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .hero h1 {
-  max-width: 12ch;
+  max-width: 11.5ch;
   margin-bottom: 1.75rem;
-  font-size: clamp(3.9rem, 8.45vw, 8.15rem);
+  font-size: clamp(3.7rem, 7.1vw, 7rem);
+  line-height: 0.94;
 }
 
 .hero-intro {
   max-width: 43rem;
   margin-bottom: 2rem;
   color: var(--muted);
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+  line-height: 1.65;
 }
 
 .hero-actions {
@@ -389,7 +469,7 @@ html[data-theme="dark"] .theme-icon-moon {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 700;
   text-decoration: none;
   transition: background var(--transition), color var(--transition), transform var(--transition);
 }
@@ -701,8 +781,8 @@ html[data-theme="dark"] .theme-icon-moon {
 .metrics strong {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3.8rem);
-  font-weight: 400;
-  letter-spacing: -0.055em;
+  font-weight: 500;
+  letter-spacing: -0.06em;
   line-height: 1;
 }
 
@@ -729,9 +809,10 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .section-heading h2 {
-  max-width: 12ch;
+  max-width: 13ch;
   margin-bottom: 0;
-  font-size: clamp(2.6rem, 5.8vw, 5.4rem);
+  font-size: clamp(2.55rem, 5.25vw, 5rem);
+  line-height: 1;
 }
 
 .section-heading-wide {
@@ -751,13 +832,19 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .prose p {
+  max-width: 46rem;
   color: var(--muted);
+}
+
+.prose p + p {
+  margin-top: 1.25rem;
 }
 
 .prose .lead {
   color: var(--ink);
-  font-size: clamp(1.2rem, 2.25vw, 1.75rem);
-  line-height: 1.45;
+  font-size: clamp(1.18rem, 1.9vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .inline-links {
@@ -772,7 +859,7 @@ html[data-theme="dark"] .theme-icon-moon {
 .project-note a {
   position: relative;
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -811,7 +898,7 @@ html[data-theme="dark"] .theme-icon-moon {
 .timeline-meta p {
   margin-bottom: 0.25rem;
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .timeline-meta span {
@@ -827,9 +914,9 @@ html[data-theme="dark"] .theme-icon-moon {
 .timeline-main h3 {
   margin-bottom: 1rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 400;
-  line-height: 1;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.05;
 }
 
 .timeline-summary {
@@ -849,8 +936,10 @@ html[data-theme="dark"] .theme-icon-moon {
 
 .impact-list li {
   position: relative;
+  max-width: 50rem;
   padding-left: 1.2rem;
   color: var(--muted);
+  line-height: 1.65;
 }
 
 .impact-list li::before {
@@ -932,9 +1021,9 @@ html[data-theme="dark"] .theme-icon-moon {
   margin: auto 0 1.25rem;
   padding-top: 4rem;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 400;
-  line-height: 0.95;
+  font-size: clamp(2.8rem, 5.2vw, 4.6rem);
+  font-weight: 600;
+  line-height: 0.98;
 }
 
 .project-card p {
@@ -1009,7 +1098,7 @@ html[data-theme="dark"] .theme-icon-moon {
   margin-bottom: 0.45rem;
   color: var(--muted);
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1017,9 +1106,9 @@ html[data-theme="dark"] .theme-icon-moon {
 .education-list h3 {
   margin-bottom: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
-  font-weight: 400;
-  line-height: 1.1;
+  font-size: clamp(1.55rem, 2.6vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.15;
 }
 
 .education-list article > p {
@@ -1047,10 +1136,12 @@ html[data-theme="dark"] .theme-icon-moon {
 .contact-grid h2 {
   max-width: 10ch;
   margin-bottom: 0;
-  font-size: clamp(3.2rem, 7.5vw, 7rem);
+  font-size: clamp(3rem, 6.6vw, 6.35rem);
+  line-height: 0.98;
 }
 
 .contact-actions p {
+  max-width: 34rem;
   color: color-mix(in srgb, var(--inverse) 68%, transparent);
 }
 
@@ -1059,7 +1150,8 @@ html[data-theme="dark"] .theme-icon-moon {
   margin: 1rem 0 2rem;
   border-bottom: 1px solid currentColor;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.6vw, 2rem);
+  font-size: clamp(1.15rem, 2.1vw, 1.75rem);
+  font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
   overflow-wrap: anywhere;
@@ -1125,6 +1217,12 @@ html[data-theme="dark"] .theme-icon-moon {
   transform: none;
 }
 
+@media (min-width: 921px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
 @media (max-width: 920px) {
   :root {
     --header-height: 4.25rem;
@@ -1136,6 +1234,21 @@ html[data-theme="dark"] .theme-icon-moon {
 
   .menu-button {
     display: grid;
+  }
+
+  .section-grid,
+  .section-heading-wide,
+  .timeline-item,
+  .contact-grid {
+    gap: 2.5rem;
+  }
+
+  .section-heading,
+  .section-content,
+  .timeline-main,
+  .contact-actions {
+    width: 100%;
+    max-width: 52rem;
   }
 
   .hero-grid,
@@ -1203,16 +1316,14 @@ html[data-theme="dark"] .theme-icon-moon {
     --shell: min(100% - 1.25rem, 1180px);
   }
 
-  .brand-text {
-    display: none;
-  }
-
   .hero {
     padding-top: calc(var(--header-height) + 3rem);
   }
 
   .hero h1 {
-    font-size: clamp(3.25rem, 17vw, 5rem);
+    max-width: 11ch;
+    font-size: clamp(3rem, 14.5vw, 4.6rem);
+    line-height: 0.97;
   }
 
   .hero-actions,
@@ -1221,11 +1332,11 @@ html[data-theme="dark"] .theme-icon-moon {
   }
 
   .hero-visual {
-    min-height: 22rem;
+    min-height: 20rem;
   }
 
   .orbital-scene {
-    width: min(100%, 22rem);
+    width: min(100%, 20rem);
   }
 
   .metrics {
@@ -1247,7 +1358,9 @@ html[data-theme="dark"] .theme-icon-moon {
   }
 
   .section-heading h2 {
-    font-size: clamp(2.5rem, 13vw, 4rem);
+    max-width: 15ch;
+    font-size: clamp(2.3rem, 11vw, 3.55rem);
+    line-height: 1.02;
   }
 
   .timeline-meta,
@@ -1263,7 +1376,7 @@ html[data-theme="dark"] .theme-icon-moon {
   }
 
   .timeline-main h3 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .project-card {
@@ -1272,7 +1385,7 @@ html[data-theme="dark"] .theme-icon-moon {
   }
 
   .project-card h3 {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 
   .project-note {
@@ -1285,6 +1398,26 @@ html[data-theme="dark"] .theme-icon-moon {
 
   .footer-grid {
     display: flex;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-text {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 0.35rem;
+  }
+
+  .icon-button,
+  .menu-button {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .mobile-menu {
+    padding-inline: 0.75rem;
   }
 }
 

@@ -1,6 +1,17 @@
 # Shiladitya Majumder — Portfolio
 
-A responsive, monochrome personal portfolio built with semantic HTML, modern CSS, and lightweight JavaScript. The hero includes a custom animated network globe rendered without external libraries. It is designed for direct deployment to GitHub Pages without a build step.
+A responsive monochrome portfolio built with semantic HTML, modern CSS, and lightweight JavaScript. It is designed for direct deployment to GitHub Pages without a build step.
+
+## Included improvements
+
+- Solid, full-height mobile navigation that remains correct after scrolling
+- Scroll locking and restoration while the mobile menu is open
+- Accessible menu state, Escape-key support, focus handling, and inert background content
+- Consistent Inter typography across headings, body copy, navigation, labels, and buttons
+- Professionally rewritten portfolio content based on the supplied résumé
+- Refined responsive spacing, text widths, section alignment, and mobile type scale
+- Light theme by default with a persistent optional dark theme
+- Animated network globe rendered without external JavaScript libraries
 
 ## Structure
 
@@ -21,22 +32,22 @@ A responsive, monochrome personal portfolio built with semantic HTML, modern CSS
 
 ## Deploy to GitHub Pages
 
-1. Create or open the repository named `shiladityamajumder.github.io`.
+1. Open the repository named `shiladityamajumder.github.io`.
 2. Upload the contents of this folder to the repository root.
-3. Commit and push to the default branch.
-4. In **Settings → Pages**, select **Deploy from a branch**, then choose the default branch and `/ (root)`.
-5. Open `https://shiladityamajumder.github.io/` after GitHub finishes deployment.
+3. Commit the changes to the default branch.
+4. In **Settings → Pages**, use **Deploy from a branch**, select the default branch, and choose `/ (root)`.
+5. Open `https://shiladityamajumder.github.io/` after deployment completes.
 
-## Update content
+## Main files
 
-- Main portfolio content: `index.html`
-- Visual design and responsiveness: `assets/css/styles.css`
-- Navigation, theme toggle, scroll effects, and animated network globe: `assets/js/main.js`
+- Portfolio content and metadata: `index.html`
+- Visual design and responsive behavior: `assets/css/styles.css`
+- Navigation, theme, scroll effects, and animated globe: `assets/js/main.js`
 - Downloadable résumé: `assets/files/Shiladitya_Majumder_Resume.pdf`
 
 ## Notes
 
-- The first visit always opens in the white light theme. The theme toggle preserves a visitor’s later light or dark selection in the browser.
-- The website uses no frontend framework or package manager. Google Fonts supplies Newsreader, Manrope, and IBM Plex Mono, with robust system-font fallbacks.
-- Project cards currently link to the GitHub repositories page because exact project repository URLs were not supplied.
+- The first visit opens in the white light theme. A visitor’s later theme selection is stored locally in the browser.
+- Google Fonts supplies Inter, with system-font fallbacks if the font service is unavailable.
+- Project cards link to the GitHub repositories page because exact project repository URLs were not supplied.
 - Update the canonical URL, sitemap, and Open Graph URLs if the GitHub username or domain changes.
