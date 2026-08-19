@@ -1,53 +1,30 @@
-# Shiladitya Majumder — Portfolio
+# Static HTML portfolio
 
-A responsive monochrome portfolio built with semantic HTML, modern CSS, and lightweight JavaScript. It is designed for direct deployment to GitHub Pages without a build step.
+This is the dependency-free version of the original Next.js portfolio.
 
-## Included improvements
+## Files
 
-- Solid, full-height mobile navigation that remains correct after scrolling
-- Scroll locking and restoration while the mobile menu is open
-- Accessible menu state, Escape-key support, focus handling, and inert background content
-- Consistent Inter typography across headings, body copy, navigation, labels, and buttons
-- Professionally rewritten portfolio content based on the supplied résumé
-- Refined responsive spacing, text widths, section alignment, and mobile type scale
-- Light theme by default with a persistent optional dark theme
-- Animated network globe rendered without external JavaScript libraries
+- `index.html` — the complete portfolio page
+- `styles.css` — original visual styling
+- `script.js` — theme toggle, mobile menu, reveal effects, active navigation, and animated network globe
+- `assets/` — résumé, favicon, and social preview image
+- `404.html` — static not-found page
+- `.nojekyll` — keeps GitHub Pages from applying Jekyll processing
 
-## Structure
+## Run locally
 
-```text
-.
-├── index.html
-├── 404.html
-├── robots.txt
-├── sitemap.xml
-├── .nojekyll
-└── assets
-    ├── css/styles.css
-    ├── js/main.js
-    ├── icons/favicon.svg
-    ├── images/social-preview.png
-    └── files/Shiladitya_Majumder_Resume.pdf
+You can simply double-click `index.html` and open it in a browser.
+
+For the most accurate local behavior, run any tiny static server from this folder, for example:
+
+```bash
+python -m http.server 8000
 ```
+
+Then open `http://localhost:8000`.
 
 ## Deploy to GitHub Pages
 
-1. Open the repository named `shiladityamajumder.github.io`.
-2. Upload the contents of this folder to the repository root.
-3. Commit the changes to the default branch.
-4. In **Settings → Pages**, use **Deploy from a branch**, select the default branch, and choose `/ (root)`.
-5. Open `https://shiladityamajumder.github.io/` after deployment completes.
+For a repository named `shiladityamajumder.github.io`, put these files in the repository root, commit, and push. In GitHub repository settings, set Pages to deploy from the branch/root folder if it is not already configured.
 
-## Main files
-
-- Portfolio content and metadata: `index.html`
-- Visual design and responsive behavior: `assets/css/styles.css`
-- Navigation, theme, scroll effects, and animated globe: `assets/js/main.js`
-- Downloadable résumé: `assets/files/Shiladitya_Majumder_Resume.pdf`
-
-## Notes
-
-- The first visit opens in the white light theme. A visitor’s later theme selection is stored locally in the browser.
-- Google Fonts supplies Inter, with system-font fallbacks if the font service is unavailable.
-- Project cards link to the GitHub repositories page because exact project repository URLs were not supplied.
-- Update the canonical URL, sitemap, and Open Graph URLs if the GitHub username or domain changes.
+No Node.js, npm, Next.js build, or package installation is required.
