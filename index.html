@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en" data-theme="palette">
+<html lang="en" data-theme="studio">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#dcedc1">
+  <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="Portfolio of Shiladitya Majumder, a backend engineer building scalable Python services, distributed systems, and production-grade APIs.">
   <meta name="author" content="Shiladitya Majumder">
@@ -25,17 +25,19 @@
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="styles.css">
 
   <script>
     try {
       const savedTheme = localStorage.getItem('portfolio-theme');
-      const theme = savedTheme === 'mono' ? 'mono' : 'palette';
+      const allowedThemes = ['palette', 'mono', 'studio'];
+      const theme = allowedThemes.includes(savedTheme) ? savedTheme : 'studio';
       document.documentElement.dataset.theme = theme;
       document.documentElement.style.colorScheme = theme === 'mono' ? 'dark' : 'light';
     } catch (_) {
-      document.documentElement.dataset.theme = 'palette';
+      document.documentElement.dataset.theme = 'studio';
     }
   </script>
   <script type="application/ld+json">
@@ -89,14 +91,14 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch to monochrome theme" title="Use monochrome theme">
-          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="3.5"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+        <button class="theme-cycle" type="button" data-theme-toggle aria-label="Theme 1 of 3: Tech Blue. Click to switch to Monochrome" title="Switch theme">
+          <svg class="theme-cycle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3.25a8.75 8.75 0 1 0 8.75 8.75c0-1.1-.88-1.98-1.98-1.98h-1.11a1.73 1.73 0 0 1-1.73-1.73V7.18A3.93 3.93 0 0 0 12 3.25Z"></path>
+            <circle cx="7.8" cy="11" r="1"></circle>
+            <circle cx="10.2" cy="7.6" r="1"></circle>
+            <circle cx="14.35" cy="6.85" r="1"></circle>
           </svg>
-          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 15.3A9 9 0 0 1 8.7 3a7.1 7.1 0 1 0 12.3 12.3Z"></path>
-          </svg>
+          <span class="theme-cycle-dots" aria-hidden="true"><i></i><i></i><i></i></span>
         </button>
         <button class="menu-button" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
           <span></span><span></span>
@@ -121,7 +123,7 @@
       <div class="shell hero-grid">
         <div class="hero-copy" data-reveal>
           <p class="eyebrow">Backend Engineer · Python · Distributed Systems</p>
-          <h1 id="hero-title">Backend systems built for reliability and scale.</h1>
+          <h1 id="hero-title">Backend systems built for <span>reliability and scale.</span></h1>
           <p class="hero-intro">Backend engineer with 5+ years of experience building production APIs and distributed services with Python, FastAPI, Django, PostgreSQL, Redis, RabbitMQ, and AWS.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">Explore selected work</a>
@@ -130,28 +132,63 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></svg>
             </a>
           </div>
+          <div class="tech-rail" aria-label="Core technology stack">
+            <span><i class="devicon-python-plain colored" aria-hidden="true"></i>Python</span>
+            <span><i class="devicon-fastapi-plain colored" aria-hidden="true"></i>FastAPI</span>
+            <span><i class="devicon-postgresql-plain colored" aria-hidden="true"></i>PostgreSQL</span>
+            <span><i class="devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i>AWS</span>
+            <span><i class="devicon-nodejs-plain colored" aria-hidden="true"></i>Node.js</span>
+          </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true" data-reveal>
-          <div class="orbital-scene">
-            <span class="globe-aura"></span>
-            <svg class="globe-base" viewBox="0 0 400 400" focusable="false">
-              <circle class="globe-outline" cx="200" cy="200" r="126"></circle>
-              <ellipse class="globe-line globe-line-vertical globe-line-vertical-one" cx="200" cy="200" rx="46" ry="126"></ellipse>
-              <ellipse class="globe-line globe-line-vertical globe-line-vertical-two" cx="200" cy="200" rx="88" ry="126"></ellipse>
-              <ellipse class="globe-line globe-line-horizontal globe-line-horizontal-one" cx="200" cy="200" rx="126" ry="42"></ellipse>
-              <ellipse class="globe-line globe-line-horizontal globe-line-horizontal-two" cx="200" cy="200" rx="116" ry="82"></ellipse>
-              <path class="globe-route globe-route-one" d="M92 179c45-54 124-75 205-36"></path>
-              <path class="globe-route globe-route-two" d="M113 260c61 32 131 27 184-18"></path>
+          <div class="system-scene" data-system-scene>
+            <div class="scene-backdrop"></div>
+            <div class="scene-grid"></div>
+            <div class="scene-orb scene-orb-a"></div>
+            <div class="scene-orb scene-orb-b"></div>
+
+            <div class="code-console scene-card">
+              <div class="console-head">
+                <div class="window-dots"><i></i><i></i><i></i></div>
+                <span>services/api.py</span>
+                <em>● live</em>
+              </div>
+              <div class="console-body">
+                <div><span class="ln">01</span><code><b>from</b> fastapi <b>import</b> FastAPI</code></div>
+                <div><span class="ln">02</span><code><b>from</b> app.core <b>import</b> service</code></div>
+                <div><span class="ln">03</span><code></code></div>
+                <div><span class="ln">04</span><code><b>@app.get</b>(<q>"/health"</q>)</code></div>
+                <div><span class="ln">05</span><code><b>async def</b> health():</code></div>
+                <div><span class="ln">06</span><code>&nbsp;&nbsp;<b>return</b> {<q>"status"</q>: <q>"ready"</q>}</code></div>
+              </div>
+            </div>
+
+            <div class="service-card scene-card">
+              <div class="service-title"><span>Production topology</span><strong>99.99%</strong></div>
+              <div class="service-row"><i class="devicon-amazonwebservices-plain-wordmark"></i><span><b>API Gateway</b><small>routing · auth boundary</small></span><em>healthy</em></div>
+              <div class="service-row"><i class="devicon-fastapi-plain"></i><span><b>FastAPI services</b><small>async · layered architecture</small></span><em>12 ms</em></div>
+              <div class="service-row"><i class="devicon-postgresql-plain"></i><span><b>PostgreSQL</b><small>indexed · transactional</small></span><em>ready</em></div>
+            </div>
+
+            <div class="float-chip chip-python"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+            <div class="float-chip chip-redis"><i class="devicon-redis-plain colored"></i><span>Redis</span></div>
+            <div class="float-chip chip-docker"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+            <div class="float-chip chip-github"><i class="devicon-github-original"></i><span>GitHub</span></div>
+
+            <div class="activity-card scene-card">
+              <span>Requests / min</span>
+              <strong>1,248</strong>
+              <div class="activity-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+
+            <svg class="scene-links" viewBox="0 0 720 600" preserveAspectRatio="none">
+              <path d="M250 205 C350 170 420 182 495 240"></path>
+              <path d="M315 355 C390 390 465 390 525 342"></path>
+              <path d="M160 330 C210 385 230 430 280 478"></path>
+              <circle cx="352" cy="187" r="5"></circle>
+              <circle cx="438" cy="392" r="5"></circle>
             </svg>
-            <canvas class="network-globe"></canvas>
-            <span class="orbit orbit-one"><i></i></span>
-            <span class="orbit orbit-two"><i></i></span>
-            <span class="orbit orbit-three"><i></i></span>
-            <span class="visual-particle visual-particle-one"></span>
-            <span class="visual-particle visual-particle-two"></span>
-            <span class="visual-particle visual-particle-three"></span>
-            <span class="visual-particle visual-particle-four"></span>
           </div>
         </div>
       </div>

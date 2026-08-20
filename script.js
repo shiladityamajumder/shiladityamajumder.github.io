@@ -13,28 +13,53 @@
   const navigationLinks = [...document.querySelectorAll('.desktop-nav a')];
   const sectionIds = ['about', 'experience', 'projects', 'skills', 'contact'];
   const themeStorageKey = 'portfolio-theme';
+  const themeOrder = ['studio', 'mono', 'palette'];
+  const themeMeta = {
+    studio: { number: '01', name: 'Tech', fullName: 'Tech Blue', color: '#ffffff', scheme: 'light' },
+    mono: { number: '02', name: 'Mono', fullName: 'Monochrome', color: '#050505', scheme: 'dark' },
+    palette: { number: '03', name: 'Pastel', fullName: 'Pastel Joy', color: '#fffaf7', scheme: 'light' }
+  };
+
   let lockedScrollPosition = 0;
 
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 
-  function setTheme(theme) {
-    root.dataset.theme = theme;
-    root.style.colorScheme = theme === 'mono' ? 'dark' : 'light';
+  function setTheme(theme, persist = true) {
+    const nextTheme = themeOrder.includes(theme) ? theme : 'studio';
+    const index = themeOrder.indexOf(nextTheme);
+    const nextIndex = (index + 1) % themeOrder.length;
+    const meta = themeMeta[nextTheme];
+    const nextMeta = themeMeta[themeOrder[nextIndex]];
+
+    root.dataset.theme = nextTheme;
+    root.style.colorScheme = meta.scheme;
+
     const themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.setAttribute('content', theme === 'mono' ? '#050505' : '#dcedc1');
+    if (themeColor) themeColor.setAttribute('content', meta.color);
+
     if (themeButton) {
-      const monoNext = theme === 'palette';
-      themeButton.setAttribute('aria-label', monoNext ? 'Switch to monochrome theme' : 'Switch to colorful theme');
-      themeButton.setAttribute('title', monoNext ? 'Use monochrome theme' : 'Use colorful theme');
+      themeButton.setAttribute(
+        'aria-label',
+        `Theme ${index + 1} of ${themeOrder.length}: ${meta.fullName}. Click to switch to ${nextMeta.fullName}`
+      );
+      themeButton.setAttribute('title', `Switch to ${nextMeta.fullName}`);
     }
-    try { localStorage.setItem(themeStorageKey, theme); } catch (_) {}
-    window.dispatchEvent(new CustomEvent('portfolio:themechange', { detail: { theme } }));
+
+    if (persist) {
+      try { localStorage.setItem(themeStorageKey, nextTheme); } catch (_) {}
+    }
+
+    window.dispatchEvent(new CustomEvent('portfolio:themechange', { detail: { theme: nextTheme } }));
   }
 
-  setTheme(root.dataset.theme === 'mono' ? 'mono' : 'palette');
-  themeButton?.addEventListener('click', () => {
-    setTheme(root.dataset.theme === 'mono' ? 'palette' : 'mono');
-  });
+  function cycleTheme() {
+    const currentIndex = themeOrder.indexOf(root.dataset.theme);
+    const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % themeOrder.length;
+    setTheme(themeOrder[nextIndex]);
+  }
+
+  setTheme(themeOrder.includes(root.dataset.theme) ? root.dataset.theme : 'studio', false);
+  themeButton?.addEventListener('click', cycleTheme);
 
   function closeMenu(restoreFocus = false) {
     if (!menuButton || !mobileMenu) return;
@@ -47,6 +72,7 @@
     body.style.removeProperty('top');
     if (main) main.inert = false;
     if (footer) footer.inert = false;
+
     const previousScrollBehavior = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
     window.scrollTo(0, lockedScrollPosition);
@@ -84,7 +110,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 920 && menuButton?.getAttribute('aria-expanded') === 'true') closeMenu();
+    if (window.innerWidth > 1080 && menuButton?.getAttribute('aria-expanded') === 'true') closeMenu();
   });
 
   document.addEventListener('keydown', (event) => {
@@ -94,8 +120,9 @@
     }
   });
 
-  const revealNodes = [...document.querySelectorAll('[data-reveal]')];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealNodes = [...document.querySelectorAll('[data-reveal]')];
+
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealNodes.forEach((node) => node.classList.add('is-visible'));
   } else {
@@ -105,180 +132,73 @@
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.14, rootMargin: '0px 0px -7% 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
     revealNodes.forEach((node) => revealObserver.observe(node));
   }
 
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && navigationLinks.length) {
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
     const sectionObserver = new IntersectionObserver((entries) => {
       const visible = entries
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
       if (!visible) return;
       navigationLinks.forEach((link) => {
         if (link.getAttribute('href') === `#${visible.target.id}`) link.setAttribute('aria-current', 'true');
         else link.removeAttribute('aria-current');
       });
-    }, { rootMargin: '-25% 0px -60% 0px', threshold: [0.1, 0.4, 0.7] });
+    }, { rootMargin: '-24% 0px -62% 0px', threshold: [0.08, 0.35, 0.65] });
+
     sections.forEach((section) => sectionObserver.observe(section));
   }
 
-  initNetworkGlobe(reduceMotion);
+  initSystemScene(reduceMotion);
 
-  function initNetworkGlobe(reduceMotionEnabled) {
-    const canvas = document.querySelector('.network-globe');
-    const visual = document.querySelector('.hero-visual');
-    const scene = document.querySelector('.orbital-scene');
-    if (!(canvas instanceof HTMLCanvasElement) || !visual || !scene) return;
+  function initSystemScene(reduceMotionEnabled) {
+    const scene = document.querySelector('[data-system-scene]');
+    if (!scene || reduceMotionEnabled) return;
 
-    const context = canvas.getContext('2d', { alpha: true });
-    if (!context) return;
+    let frame = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
 
-    const pointCount = 104;
-    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-    const points = Array.from({ length: pointCount }, (_, index) => {
-      const y = 1 - (index / (pointCount - 1)) * 2;
-      const radius = Math.sqrt(Math.max(0, 1 - y * y));
-      const theta = goldenAngle * index;
-      return { x: Math.cos(theta) * radius, y, z: Math.sin(theta) * radius };
+    function update() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      scene.style.setProperty('--tilt-x', `${currentX.toFixed(2)}deg`);
+      scene.style.setProperty('--tilt-y', `${currentY.toFixed(2)}deg`);
+
+      const moving = Math.abs(targetX - currentX) > 0.02 || Math.abs(targetY - currentY) > 0.02;
+      if (moving) frame = requestAnimationFrame(update);
+      else frame = 0;
+    }
+
+    function requestUpdate() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+
+    scene.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      const bounds = scene.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      targetX = x * 5.5;
+      targetY = y * -4.2;
+      requestUpdate();
     });
 
-    const connections = [];
-    for (let a = 0; a < points.length; a += 1) {
-      for (let b = a + 1; b < points.length; b += 1) {
-        const dx = points[a].x - points[b].x;
-        const dy = points[a].y - points[b].y;
-        const dz = points[a].z - points[b].z;
-        if (Math.sqrt(dx * dx + dy * dy + dz * dz) < 0.34) connections.push([a, b]);
-      }
-    }
+    scene.addEventListener('pointerleave', () => {
+      targetX = 0;
+      targetY = 0;
+      requestUpdate();
+    });
 
-    let width = 0;
-    let height = 0;
-    let frame = 0;
-    let previousTime = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-    let targetPointerX = 0;
-    let targetPointerY = 0;
-
-    function resize() {
-      const bounds = canvas.getBoundingClientRect();
-      width = Math.max(1, bounds.width);
-      height = Math.max(1, bounds.height);
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(width * pixelRatio);
-      canvas.height = Math.round(height * pixelRatio);
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    }
-
-    function rotatePoint(point, rotationY, rotationX) {
-      const cosY = Math.cos(rotationY);
-      const sinY = Math.sin(rotationY);
-      const xY = point.x * cosY - point.z * sinY;
-      const zY = point.x * sinY + point.z * cosY;
-      const cosX = Math.cos(rotationX);
-      const sinX = Math.sin(rotationX);
-      return {
-        x: xY,
-        y: point.y * cosX - zY * sinX,
-        z: point.y * sinX + zY * cosX
-      };
-    }
-
-    function draw(time = 0) {
-      if (!width || !height) return;
-      context.clearRect(0, 0, width, height);
-      pointerX += (targetPointerX - pointerX) * 0.045;
-      pointerY += (targetPointerY - pointerY) * 0.045;
-
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const radius = Math.min(width, height) * 0.315;
-      const rotationY = time * 0.00012 + pointerX;
-      const rotationX = -0.16 + Math.sin(time * 0.00017) * 0.035 + pointerY;
-      const ink = getComputedStyle(root).getPropertyValue('--ink').trim() || '#111111';
-      const projected = points.map((point) => {
-        const rotated = rotatePoint(point, rotationY, rotationX);
-        const perspective = 2.8 / (3.3 - rotated.z);
-        return {
-          x: centerX + rotated.x * radius * perspective,
-          y: centerY + rotated.y * radius * perspective,
-          z: rotated.z,
-          depth: (rotated.z + 1) / 2
-        };
-      });
-
-      context.lineCap = 'round';
-      connections.forEach(([a, b]) => {
-        const first = projected[a];
-        const second = projected[b];
-        const depth = Math.max(0, (first.depth + second.depth) / 2);
-        context.beginPath();
-        context.moveTo(first.x, first.y);
-        context.lineTo(second.x, second.y);
-        context.strokeStyle = ink;
-        context.globalAlpha = 0.025 + depth * 0.15;
-        context.lineWidth = 0.45 + depth * 0.38;
-        context.stroke();
-      });
-
-      projected
-        .map((point, index) => ({ ...point, index }))
-        .sort((a, b) => a.z - b.z)
-        .forEach((point) => {
-          const pulse = 0.88 + Math.sin(time * 0.002 + point.index * 0.72) * 0.16;
-          context.beginPath();
-          context.arc(point.x, point.y, (0.62 + point.depth * 1.15) * pulse, 0, Math.PI * 2);
-          context.fillStyle = ink;
-          context.globalAlpha = 0.12 + point.depth * 0.72;
-          context.fill();
-        });
-      context.globalAlpha = 1;
-    }
-
-    function animate(time) {
-      if (time - previousTime > 28) {
-        draw(time);
-        previousTime = time;
-      }
-      frame = requestAnimationFrame(animate);
-    }
-
-    function onPointerMove(event) {
-      if (event.pointerType === 'touch') return;
-      const bounds = visual.getBoundingClientRect();
-      const normalizedX = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const normalizedY = (event.clientY - bounds.top) / bounds.height - 0.5;
-      targetPointerX = normalizedX * 0.26;
-      targetPointerY = normalizedY * -0.18;
-      scene.style.setProperty('--scene-tilt-x', `${normalizedX * 5}deg`);
-      scene.style.setProperty('--scene-tilt-y', `${normalizedY * -4}deg`);
-    }
-
-    function resetTilt() {
-      targetPointerX = 0;
-      targetPointerY = 0;
-      scene.style.setProperty('--scene-tilt-x', '0deg');
-      scene.style.setProperty('--scene-tilt-y', '0deg');
-    }
-
-    function redraw() { draw(reduceMotionEnabled ? 0 : performance.now()); }
-
-    resize();
-    redraw();
-    if ('ResizeObserver' in window) {
-      const resizeObserver = new ResizeObserver(() => { resize(); redraw(); });
-      resizeObserver.observe(canvas);
-    } else {
-      window.addEventListener('resize', () => { resize(); redraw(); });
-    }
-    visual.addEventListener('pointermove', onPointerMove);
-    visual.addEventListener('pointerleave', resetTilt);
-    window.addEventListener('portfolio:themechange', redraw);
-    if (!reduceMotionEnabled) frame = requestAnimationFrame(animate);
-
-    window.addEventListener('pagehide', () => cancelAnimationFrame(frame), { once: true });
+    window.addEventListener('pagehide', () => {
+      if (frame) cancelAnimationFrame(frame);
+    }, { once: true });
   }
 })();

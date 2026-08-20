@@ -1,40 +1,77 @@
 <!doctype html>
-<html lang="en" data-theme="palette">
+<html lang="en" data-theme="studio">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#dcedc1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light dark">
   <title>Page not found — Shiladitya Majumder</title>
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script>
     try {
       const savedTheme = localStorage.getItem('portfolio-theme');
-      const theme = savedTheme === 'mono' ? 'mono' : 'palette';
+      const allowedThemes = ['studio', 'mono', 'palette'];
+      const theme = allowedThemes.includes(savedTheme) ? savedTheme : 'studio';
       document.documentElement.dataset.theme = theme;
       document.documentElement.style.colorScheme = theme === 'mono' ? 'dark' : 'light';
-    } catch (_) {}
+    } catch (_) {
+      document.documentElement.dataset.theme = 'studio';
+    }
   </script>
 </head>
 <body>
   <main class="not-found-page">
-    <div class="not-found-card">
-      <div class="not-found-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40">
-          <path d="M15 11 8.5 20 15 29"></path>
-          <path d="m25 11 6.5 9-6.5 9"></path>
-          <path d="m23 8-6 24"></path>
-        </svg>
-      </div>
-      <p class="not-found-code">Error 404 / Route unavailable</p>
-      <h1>This page could not be found.</h1>
-      <p>The address may be incorrect or the page may have moved. Return to the main portfolio to continue.</p>
-      <a href="/">Return to portfolio</a>
+    <div class="not-found-shell">
+      <section class="not-found-card" aria-labelledby="not-found-title">
+        <div class="not-found-top">
+          <div class="not-found-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <path d="M15 11 8.5 20 15 29"></path>
+              <path d="m25 11 6.5 9-6.5 9"></path>
+              <path d="m23 8-6 24"></path>
+            </svg>
+          </div>
+          <button class="theme-cycle" type="button" data-theme-toggle aria-label="Theme 1 of 3: Tech Blue. Click to switch to Monochrome" title="Switch theme">
+            <svg class="theme-cycle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3.25a8.75 8.75 0 1 0 8.75 8.75c0-1.1-.88-1.98-1.98-1.98h-1.11a1.73 1.73 0 0 1-1.73-1.73V7.18A3.93 3.93 0 0 0 12 3.25Z"></path>
+              <circle cx="7.8" cy="11" r="1"></circle>
+              <circle cx="10.2" cy="7.6" r="1"></circle>
+              <circle cx="14.35" cy="6.85" r="1"></circle>
+            </svg>
+            <span class="theme-cycle-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+        </div>
+
+        <p class="not-found-code">HTTP 404 · route_not_found</p>
+        <h1 id="not-found-title">This route went missing.</h1>
+        <p>The page may have moved, the URL may contain a typo, or this endpoint simply does not exist anymore. The portfolio is still running perfectly.</p>
+        <div class="not-found-actions">
+          <a class="button button-primary" href="/">Return to portfolio</a>
+          <a class="button button-secondary" href="/#projects">View selected work</a>
+        </div>
+      </section>
+
+      <aside class="not-found-visual" aria-hidden="true">
+        <span class="route-pulse one"></span>
+        <span class="route-pulse two"></span>
+        <div class="not-found-terminal">
+          <header><i></i><i></i><i></i></header>
+          <pre><b>$</b> GET /requested-route
+
+status: 404
+message: "route not found"
+
+<b>$</b> redirect --home
+→ shiladityamajumder.github.io</pre>
+        </div>
+      </aside>
     </div>
   </main>
+  <script src="/script.js" defer></script>
 </body>
 </html>
