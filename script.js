@@ -20,7 +20,6 @@
     palette: { number: '03', name: 'Pastel', fullName: 'Pastel Joy', color: '#fffaf7', scheme: 'light' }
   };
 
-  let lockedScrollPosition = 0;
 
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 
@@ -68,28 +67,24 @@
     menuButton.setAttribute('aria-label', 'Open menu');
     const srText = menuButton.querySelector('.sr-only');
     if (srText) srText.textContent = 'Open menu';
+    root.classList.remove('menu-open');
     body.classList.remove('menu-open');
-    body.style.removeProperty('top');
+    header?.classList.remove('menu-active');
     if (main) main.inert = false;
     if (footer) footer.inert = false;
-
-    const previousScrollBehavior = root.style.scrollBehavior;
-    root.style.scrollBehavior = 'auto';
-    window.scrollTo(0, lockedScrollPosition);
-    root.style.scrollBehavior = previousScrollBehavior;
     if (restoreFocus) menuButton.focus({ preventScroll: true });
   }
 
   function openMenu() {
     if (!menuButton || !mobileMenu) return;
-    lockedScrollPosition = window.scrollY;
     mobileMenu.hidden = false;
     menuButton.setAttribute('aria-expanded', 'true');
     menuButton.setAttribute('aria-label', 'Close menu');
     const srText = menuButton.querySelector('.sr-only');
     if (srText) srText.textContent = 'Close menu';
-    body.style.top = `-${lockedScrollPosition}px`;
+    root.classList.add('menu-open');
     body.classList.add('menu-open');
+    header?.classList.add('menu-active');
     if (main) main.inert = true;
     if (footer) footer.inert = true;
   }
@@ -102,6 +97,12 @@
   mobileMenu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => closeMenu());
   });
+
+  document.addEventListener('touchmove', (event) => {
+    if (!body.classList.contains('menu-open')) return;
+    if (mobileMenu?.contains(event.target)) return;
+    event.preventDefault();
+  }, { passive: false });
 
   function onScroll() {
     header?.classList.toggle('is-scrolled', window.scrollY > 12);
