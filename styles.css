@@ -1183,3 +1183,51 @@ html[data-theme="palette"] .not-found-terminal b { color: #ffb6d5; }
     padding-top: calc(var(--header-height) + 22px);
   }
 }
+
+/* --------------------------------------------------------------------------
+   PASTEL HERO TYPOGRAPHY REFINEMENT
+   Keep the handwritten character while giving long glyphs/descenders enough
+   breathing room and more balanced wrapping on desktop and small screens.
+   -------------------------------------------------------------------------- */
+html[data-theme="palette"] .hero h1 {
+  font-size: clamp(64px, 6.35vw, 96px);
+  line-height: .96;
+  letter-spacing: -.018em;
+  text-wrap: balance;
+}
+
+@media (max-width: 1080px) {
+  html[data-theme="palette"] .hero h1 {
+    font-size: clamp(60px, 12.6vw, 82px);
+    line-height: .95;
+  }
+}
+
+@media (max-width: 580px) {
+  html[data-theme="palette"] .hero h1 {
+    font-size: clamp(50px, 15.2vw, 66px);
+    line-height: .96;
+  }
+}
+
+@media (max-width: 400px) {
+  html[data-theme="palette"] .hero h1 {
+    font-size: clamp(48px, 14.8vw, 58px);
+    line-height: .97;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PASTEL HERO — CURSIVE GLYPH OVERHANG FIX
+   Caveat's final "y" extends slightly beyond its inline advance box. Because
+   the highlighted phrase uses background-clip:text, Chromium can clip that
+   overhang at a wrapped line edge. Clone a tiny transparent paint allowance
+   on each inline fragment while cancelling its layout width, so wrapping and
+   every other part of the design stay exactly the same.
+   -------------------------------------------------------------------------- */
+html[data-theme="palette"] .hero h1 > span {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: .025em .12em;
+  margin-inline: -.025em -.12em;
+}
