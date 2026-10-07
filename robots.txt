@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://shiladityamajumder.github.io/sitemap.xml
